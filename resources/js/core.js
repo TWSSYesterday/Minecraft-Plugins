@@ -11,10 +11,10 @@ var Core = {
     // The loading spinner.
     spinner: null,
 
+    websiteUrl: "http://www.minecraft-plugins.com/",
+
     // Settings for the core.
-    settings: {
-        // Settings go here.
-    },
+    settings: {},
 
     // Initialize the core.
     init: function () {
@@ -170,6 +170,63 @@ var Core = {
             role: 'alert',
             html: msg + '<a href="#" class="close" data-dismiss="alert">&times;</a>'
         }).appendTo("#error");
+
+    },
+
+    populateData: function (data) {
+
+        Core.source.data = data;
+
+        $("#plugin-name").html(data.plugin_name || "");
+        $("#plugin-author").html(data.authors || "");
+        $("#plugin-latest-version").html(data.versions[0].version || "");
+        $("#plugin-description").html(data.description || "");
+        $("#plugin-website").attr("href", data.website || "");
+        $("#plugin-repo-page").attr("href", data.dbo_page || "");
+        $("#plugin-latest-download").attr("href", data.versions[0].download || "");
+        $("#plugin-logo").attr("href", data.logo_full || "resources/images/default.jpg");
+        $("#plugin-logo img").attr("src", data.logo_full || "resources/images/default.jpg");
+
+        for (var i = 0; i < data.versions.length; i++) {
+
+            // Create the changlog button.
+            var changelog_button = $("<a>", {
+                class: "btn btn-primary btn-sm btn-block btn-changelog",
+                text: "Changelog"
+            });
+
+            // Create the download button
+            var download_button = $("<a>", {
+                href: data.versions[i].download,
+                class: "btn btn-primary btn-sm btn-block",
+                html: "<i class='icon fa fa-download'></i>Download"
+            });
+
+            // Create the table entry for the version.
+            $("#download-table").find("tbody")
+                .append($("<tr id='trr-" + i + "'>")
+                    .append($("<td>")
+                        .text(data.versions[i].version))
+                    .append($("<td>")
+                        .text(data.versions[i].filename))
+                    .append($("<td>")
+                        .append(changelog_button))
+                    .append($("<td>")
+                        .append(download_button))
+            );
+
+        }
+
+        // Show the modal when the changelog is clicked.
+        $(".btn-changelog").click(function () {
+            var index = $(this).closest('td').parent()[0].sectionRowIndex;
+            $("#changelog-title").text(Core.source.data.versions[index].version);
+            $("#changelog-body").html(atob(Core.source.data.versions[index].changelog));
+            $("#changelog-modal").modal("show");
+        });
+
+        // Everything was a success.
+        Core.success();
 
     }
 

@@ -3,13 +3,11 @@ var DBO = {
     // The current plugin data formatted as a 'details' object - see documentation.
     data: null,
 
+    // Base URL for the BukGet API.
+    baseUrl: "http://api.bukget.org/3/",
+
     // Settings for DBO.
-    settings: {
-
-        // The base URL of the BukGet API.
-        baseUrl: "http://api.bukget.org/3/"
-
-    },
+    settings: {},
 
     // Initialize the source.
     init: function () {
@@ -22,7 +20,7 @@ var DBO = {
 
     getPluginSlug: function (name, type, callback) {
 
-        var url = this.baseUrl + "search/plugin_name/like/" + name + "?fields=slug,plugin_name";
+        var url = DBO.baseUrl + "search/plugin_name/like/" + name + "?fields=slug,plugin_name";
 
         var xhr = new XMLHttpRequest();
 
@@ -47,7 +45,7 @@ var DBO = {
                     if (typeof data[0] === "undefined") {
                         Core.error("Plugin does not exist.");
                     } else {
-                        callback(slug, type, MinecraftPlugins.populateData);
+                        callback(slug, type, Core.populateData);
                     }
 
                 }
@@ -60,8 +58,6 @@ var DBO = {
 
         };
 
-        console.log(url);
-
         xhr.open("GET", url, true);
         xhr.send();
 
@@ -69,7 +65,7 @@ var DBO = {
 
     getPluginData: function (slug, type, callback) {
 
-        var url = this.baseUrl + "plugins/" + type + "/" + slug;
+        var url = DBO.baseUrl + "plugins/" + type + "/" + slug;
 
         var xhr = new XMLHttpRequest();
 
@@ -103,8 +99,7 @@ var DBO = {
                 var data = JSON.parse(xhr.responseText);
                 $("#input-plugin-name").autocomplete({
                     lookup: data.suggestions,
-                    lookupLimit: 20,
-                    autoSelectFirst: true
+                    lookupLimit: 20
                 });
             }
         };
