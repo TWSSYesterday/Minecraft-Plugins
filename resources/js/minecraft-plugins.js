@@ -11,138 +11,138 @@ var MinecraftPlugins = {
 
     init: function () {
 
-        MinecraftPlugins.bukget_base_url = "http://api.bukget.org/3/";
-        MinecraftPlugins.spinner = new Spinner();
+        //MinecraftPlugins.bukget_base_url = "http://api.bukget.org/3/";
+        //MinecraftPlugins.spinner = new Spinner();
 
         // Populate searcg suggestions from our cached (and formatted) copy of the BukGet plugin list.
         MinecraftPlugins.populateSearchSuggestions(MinecraftPlugins.getServerType());
 
         // If passed some args, search based on those.
-        window.onload = function () {
-            var plugin_name = MinecraftPlugins.getParameterByName("plugin_name");
-            var server_type = MinecraftPlugins.getParameterByName("server_type") || MinecraftPlugins.default_server_type;
-            if (plugin_name) {
-                $("#input-plugin-name").val(plugin_name);
-                $("#input-server-type").val(server_type);
-                MinecraftPlugins.search(plugin_name, server_type);
-            }
-        };
+        //window.onload = function () {
+        //    var plugin_name = MinecraftPlugins.getParameterByName("plugin_name");
+        //    var server_type = MinecraftPlugins.getParameterByName("server_type") || MinecraftPlugins.default_server_type;
+        //    if (plugin_name) {
+        //        $("#input-plugin-name").val(plugin_name);
+        //        $("#input-server-type").val(server_type);
+        //        MinecraftPlugins.search(plugin_name, server_type);
+        //    }
+        //};
 
-        $("#search-form").submit(function () {
-            var name = $("#input-plugin-name").val();
-            if (name === undefined || name === "") {
-                MinecraftPlugins.loadError("Plugin must not be empty.");
-                return false;
-            }
-        });
-
-    },
-
-    clearData: function () {
-
-        // Clear the name.
-        $("#plugin-name").empty();
-
-        // Clear the authors.
-        $("#plugin-author").empty();
-
-        // Clear the version.
-        $("#plugin-latest-version").empty();
-
-        // Clear the description.
-        $("#plugin-description").empty();
-
-        // Clear the website.
-        $("#plugin-website").attr("href", "#");
-
-        $("#plugin-repo-page").attr("href", "#");
-
-        // Clear the latest download link.
-        $("#plugin-latest-download").attr("href", "#");
-
-        // Empty the downloads table.
-        $("#download-table > tbody").empty();
+        //$("#search-form").submit(function () {
+        //    var name = $("#input-plugin-name").val();
+        //    if (name === undefined || name === "") {
+        //        MinecraftPlugins.loadError("Plugin must not be empty.");
+        //        return false;
+        //    }
+        //});
 
     },
 
-    getPluginData: function (slug, type, callback) {
+    //clearData: function () {
+    //
+    //    // Clear the name.
+    //    $("#plugin-name").empty();
+    //
+    //    // Clear the authors.
+    //    $("#plugin-author").empty();
+    //
+    //    // Clear the version.
+    //    $("#plugin-latest-version").empty();
+    //
+    //    // Clear the description.
+    //    $("#plugin-description").empty();
+    //
+    //    // Clear the website.
+    //    $("#plugin-website").attr("href", "#");
+    //
+    //    $("#plugin-repo-page").attr("href", "#");
+    //
+    //    // Clear the latest download link.
+    //    $("#plugin-latest-download").attr("href", "#");
+    //
+    //    // Empty the downloads table.
+    //    $("#download-table > tbody").empty();
+    //
+    //},
 
-        var url = MinecraftPlugins.bukget_base_url + "plugins/" + type + "/" + slug;
+    //getPluginData: function (slug, type, callback) {
+    //
+    //    var url = MinecraftPlugins.bukget_base_url + "plugins/" + type + "/" + slug;
+    //
+    //    var xhr = new XMLHttpRequest();
+    //
+    //    xhr.onreadystatechange = function () {
+    //
+    //        if (xhr.readyState === 4) {
+    //
+    //            // Valid plugin.
+    //            if (xhr.status === 200)
+    //                callback(JSON.parse(xhr.responseText));
+    //
+    //            // Invalid plugin.
+    //            if (xhr.status === 404)
+    //                MinecraftPlugins.loadError("Could not load plugin data.");
+    //
+    //        }
+    //
+    //    };
+    //
+    //    xhr.open("GET", url, true);
+    //    xhr.send();
+    //
+    //},
 
-        var xhr = new XMLHttpRequest();
+    //getPluginSlug: function (name, type, callback) {
+    //
+    //    var url = MinecraftPlugins.bukget_base_url + "search/plugin_name/like/" + name + "?fields=slug,plugin_name";
+    //
+    //    var xhr = new XMLHttpRequest();
+    //
+    //    xhr.onreadystatechange = function () {
+    //
+    //        if (xhr.readyState === 4) {
+    //
+    //            // Valid plugin.
+    //            if (xhr.status === 200) {
+    //
+    //                var data = JSON.parse(xhr.responseText);
+    //
+    //                var slug = null;
+    //
+    //                // Match plugin names based on similar plugins, workaround for lack of case insensitive search.
+    //                for (var i in data) {
+    //                    if (data[i].plugin_name.toLowerCase() === MinecraftPlugins.getPluginName().toLowerCase()) {
+    //                        slug = data[i].slug;
+    //                    }
+    //                }
+    //
+    //                if (typeof data[0] === "undefined") {
+    //                    MinecraftPlugins.loadError("Plugin does not exist.");
+    //                } else {
+    //                    callback(slug, type, MinecraftPlugins.populateData);
+    //                }
+    //
+    //            }
+    //
+    //            // Invalid plugin.
+    //            if (xhr.status === 404)
+    //                MinecraftPlugins.loadError("Plugin does not exist.");
+    //
+    //        }
+    //
+    //    };
+    //
+    //    xhr.open("GET", url, true);
+    //    xhr.send();
+    //
+    //},
 
-        xhr.onreadystatechange = function () {
-
-            if (xhr.readyState === 4) {
-
-                // Valid plugin.
-                if (xhr.status === 200)
-                    callback(JSON.parse(xhr.responseText));
-
-                // Invalid plugin.
-                if (xhr.status === 404)
-                    MinecraftPlugins.loadError("Could not load plugin data.");
-
-            }
-
-        };
-
-        xhr.open("GET", url, true);
-        xhr.send();
-
-    },
-
-    getPluginSlug: function (name, type, callback) {
-
-        var url = MinecraftPlugins.bukget_base_url + "search/plugin_name/like/" + name + "?fields=slug,plugin_name";
-
-        var xhr = new XMLHttpRequest();
-
-        xhr.onreadystatechange = function () {
-
-            if (xhr.readyState === 4) {
-
-                // Valid plugin.
-                if (xhr.status === 200) {
-
-                    var data = JSON.parse(xhr.responseText);
-
-                    var slug = null;
-
-                    // Match plugin names based on similar plugins, workaround for lack of case insensitive search.
-                    for (var i in data) {
-                        if (data[i].plugin_name.toLowerCase() === MinecraftPlugins.getPluginName().toLowerCase()) {
-                            slug = data[i].slug;
-                        }
-                    }
-
-                    if (typeof data[0] === "undefined") {
-                        MinecraftPlugins.loadError("Plugin does not exist.");
-                    } else {
-                        callback(slug, type, MinecraftPlugins.populateData);
-                    }
-
-                }
-
-                // Invalid plugin.
-                if (xhr.status === 404)
-                    MinecraftPlugins.loadError("Plugin does not exist.");
-
-            }
-
-        };
-
-        xhr.open("GET", url, true);
-        xhr.send();
-
-    },
-
-    getParameterByName: function (name) {
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-            results = regex.exec(location.search);
-        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-    },
+    //getParameterByName: function (name) {
+    //    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    //    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    //        results = regex.exec(location.search);
+    //    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    //},
 
     getPluginName: function () {
         return $("#input-plugin-name").val();
@@ -219,7 +219,13 @@ var MinecraftPlugins = {
                 $("#input-plugin-name").autocomplete({
                     lookup: data.suggestions,
                     lookupLimit: 20,
-                    autoSelectFirst: true
+                    autoSelectFirst: true,
+                    onSearchComplete: function (query, suggestions) {
+                        console.log("complete");
+                    },
+                    onSelect: function (suggestion) {
+                        console.log(suggestion.value);
+                    }
                 });
             }
         };
@@ -229,23 +235,23 @@ var MinecraftPlugins = {
 
     },
 
-    search: function (name, type) {
-
-        // Start the loading.
-        MinecraftPlugins.startLoading();
-
-        var plugin_name = name || MinecraftPlugins.getPluginName();
-        var server_type = type || MinecraftPlugins.getServerType().toLowerCase();
-
-        if (plugin_name === undefined || plugin_name === "") {
-            MinecraftPlugins.loadError("Plugin must not be empty.");
-        } else if (server_type === undefined || server_type === "") {
-            MinecraftPlugins.loadError("Server Type must not be empty.");
-        } else {
-            MinecraftPlugins.getPluginSlug(plugin_name, server_type, MinecraftPlugins.getPluginData);
-        }
-
-    },
+    //search: function (name, type) {
+    //
+    //    // Start the loading.
+    //    MinecraftPlugins.startLoading();
+    //
+    //    var plugin_name = name || MinecraftPlugins.getPluginName();
+    //    var server_type = type || MinecraftPlugins.getServerType().toLowerCase();
+    //
+    //    if (plugin_name === undefined || plugin_name === "") {
+    //        MinecraftPlugins.loadError("Plugin must not be empty.");
+    //    } else if (server_type === undefined || server_type === "") {
+    //        MinecraftPlugins.loadError("Server Type must not be empty.");
+    //    } else {
+    //        MinecraftPlugins.getPluginSlug(plugin_name, server_type, MinecraftPlugins.getPluginData);
+    //    }
+    //
+    //},
 
     startLoading: function () {
 

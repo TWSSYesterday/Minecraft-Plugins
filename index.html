@@ -46,12 +46,12 @@
 
                     <div class="col-md-8">
                         <div class="form-group">
-                            <input id="input-plugin-name" name="plugin_name" type="text" class="form-control" placeholder="Plugin...">
+                            <input id="input-plugin-name" name="search" type="text" class="form-control" placeholder="Plugin...">
                         </div>
                     </div>
 
                     <div class="col-md-2">
-                        <select id="input-server-type" name="server_type" class="form-control">
+                        <select id="input-server-type" name="type" class="form-control">
                             <option value="bukkit">Bukkit</option>
                         </select>
                     </div>
@@ -173,10 +173,11 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.2.7/jquery.devbridge-autocomplete.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.0.1/spin.min.js"></script>
 
-        <script src="resources/js/minecraft-plugins.min.js"></script>
+        <script src="resources/js/core.js"></script>
+        <script src="resources/js/dbo.js"></script>
 
         <script>
-            MinecraftPlugins.init();
+            Core.init();
         </script>
 
         <script>
