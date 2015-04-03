@@ -4,7 +4,7 @@ var DBO = {
     data: null,
 
     // Base URL for the BukGet API.
-    baseUrl: "http://api.bukget.org/3/",
+    baseUrl: "https://api.bukget.org/3/",
 
     // Settings for DBO.
     settings: {},
@@ -97,7 +97,7 @@ var DBO = {
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 var data = JSON.parse(xhr.responseText);
-                $("#input-plugin-name").autocomplete({
+                $("#input-search-term").autocomplete({
                     lookup: data.suggestions,
                     lookupLimit: 20
                 });

@@ -11,7 +11,7 @@ var Core = {
     // The loading spinner.
     spinner: null,
 
-    websiteUrl: "http://www.minecraft-plugins.com/",
+    websiteUrl: "https://www.minecraft-plugins.com/",
 
     // Settings for the core.
     settings: {},
@@ -35,7 +35,7 @@ var Core = {
 
         // Don't allow empty searches.
         $("#search-form").submit(function () {
-            var search = $("#input-plugin-name").val(), type = $("#input-server-type :selected").attr("value");
+            var search = $("#input-search-term").val(), type = $("#input-server-type :selected").attr("value");
             if (!search || !type) {
                 Core.error("Must not have empty parameters.");
                 return false;
@@ -126,6 +126,14 @@ var Core = {
         // Empty the downloads table.
         $("#download-table > tbody").empty();
 
+    },
+
+    getSearchTerm: function () {
+        return $("#input-search-term").val();
+    },
+
+    getServerType: function () {
+        return $("#input-server-type :selected").val();
     },
 
     start: function() {

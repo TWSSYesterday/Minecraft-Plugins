@@ -145,7 +145,7 @@ var MinecraftPlugins = {
     //},
 
     getPluginName: function () {
-        return $("#input-plugin-name").val();
+        return $("#input-search-ter,").val();
     },
 
     getServerType: function () {
@@ -216,7 +216,7 @@ var MinecraftPlugins = {
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 var data = JSON.parse(xhr.responseText);
-                $("#input-plugin-name").autocomplete({
+                $("#input-search-ter,").autocomplete({
                     lookup: data.suggestions,
                     lookupLimit: 20,
                     autoSelectFirst: true,
