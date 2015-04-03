@@ -9,6 +9,8 @@ var MinecraftPlugins = {
     // Default server type.
     default_server_type: "bukkit",
 
+    website_base: "http://www.minecraft-plugins.com/",
+
     init: function () {
 
         MinecraftPlugins.bukget_base_url = "http://api.bukget.org/3/";
@@ -218,13 +220,13 @@ var MinecraftPlugins = {
                 var data = JSON.parse(xhr.responseText);
                 $("#input-plugin-name").autocomplete({
                     lookup: data.suggestions,
-                    lookupLimit: 20,
-                    autoSelectFirst: true
+                    autoSelectFirst: true,
+                    deferRequestBy: 100
                 });
             }
         };
 
-        xhr.open("GET", server_type + "-plugins.json", true);
+        xhr.open("GET", MinecraftPlugins.website_base + server_type + "-plugins.json", true);
         xhr.send();
 
     },
