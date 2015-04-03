@@ -4,7 +4,7 @@ var DBO = {
     data: null,
 
     // Base URL for the BukGet API.
-    baseUrl: "https://api.bukget.org/3/",
+    baseUrl: "//api.bukget.org/3/",
 
     // Settings for DBO.
     settings: {},

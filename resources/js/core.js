@@ -11,7 +11,7 @@ var Core = {
     // The loading spinner.
     spinner: null,
 
-    websiteUrl: "https://www.minecraft-plugins.com/",
+    websiteUrl: "//www.minecraft-plugins.com/",
 
     // Settings for the core.
     settings: {},
