@@ -9,11 +9,11 @@ var MinecraftPlugins = {
     // Default server type.
     default_server_type: "bukkit",
 
-    website_base: "http://www.minecraft-plugins.com/",
+    website_base: "https://www.minecraft-plugins.com/",
 
     init: function () {
 
-        MinecraftPlugins.bukget_base_url = "http://api.bukget.org/3/";
+        MinecraftPlugins.bukget_base_url = "https://api.bukget.org/3/";
         MinecraftPlugins.spinner = new Spinner();
 
         // Populate searcg suggestions from our cached (and formatted) copy of the BukGet plugin list.
