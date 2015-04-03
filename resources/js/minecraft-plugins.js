@@ -218,14 +218,7 @@ var MinecraftPlugins = {
                 var data = JSON.parse(xhr.responseText);
                 $("#input-search-ter,").autocomplete({
                     lookup: data.suggestions,
-                    lookupLimit: 20,
-                    autoSelectFirst: true,
-                    onSearchComplete: function (query, suggestions) {
-                        console.log("complete");
-                    },
-                    onSelect: function (suggestion) {
-                        console.log(suggestion.value);
-                    }
+                    lookupLimit: 20
                 });
             }
         };
