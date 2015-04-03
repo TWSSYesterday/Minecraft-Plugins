@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+
+<html>
+
+    <head>
+
+        <title>Minecraft-Plugins | Bukkit Plugins</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,700">
+
+        <link rel="stylesheet" href="resources/css/minecraft-plugins.min.css">
+
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-fixed-top navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">
+                        <i class="fa fa-home"></i>Minecraft-Plugins
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="jumbotron">
+                        <h2>Welcome to Minecraft-Plugins</h2>
+                        <h4>Search for Minecraft server plugins to view plugin details, version information, and downloads.</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <form id="search-form" role="form">
+
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <input id="input-plugin-name" name="plugin_name" type="text" class="form-control" placeholder="Plugin...">
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <select id="input-server-type" name="server_type" class="form-control">
+                            <option value="bukkit">Bukkit</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <button id="plugin-search" type="submit" class="btn btn-success btn-block">Search</button>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <hr>
+
+            <div id="spinner"></div>
+            <div id="error"></div>
+
+            <div id="plugin-details" class="row plugin-details">
+
+                <div class="col-md-3">
+                    <div class="plugin-logo-container">
+                        <a id="plugin-logo" class="thumbnail" href="resources/images/default.jpg" target="_blank">
+                            <img src="resources/images/default.jpg">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h1 class="panel-title">Plugin Name</h1>
+                        </div>
+                        <div id="plugin-name" class="panel-body"></div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Author</h3>
+                        </div>
+                        <div id="plugin-author" class="panel-body"></div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Latest Version</h3>
+                        </div>
+                        <div id="plugin-latest-version" class="panel-body"></div>
+                    </div>
+                </div>
+
+                <div class="col-md-9">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Description</h3>
+                        </div>
+                        <div id="plugin-description" class="panel-body"></div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <a id="plugin-website" class="btn btn-primary btn-block btn-plugin-info" role="button" href="#" target="_blank">Website</a>
+                </div>
+
+                <div class="col-md-3">
+                    <a id="plugin-repo-page" class="btn btn-primary btn-block btn-plugin-info" role="button" href="#" target="_blank">Repository Page</a>
+                </div>
+
+                <div class="col-md-3">
+                    <a id="plugin-latest-download" class="btn btn-primary btn-block btn-plugin-info" role="button" href="#">
+                        <i class="fa fa-download"></i>Latest Download
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="row plugin-details">
+
+                <div class="col-md-12">
+                    <table id="download-table" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Version</th>
+                                <th>File Name</th>
+                                <th>Changelog</th>
+                                <th>Download</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+                <div id="changelog-modal" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 id="changelog-title" class="modal-title"></h4>
+                            </div>
+                            <div id="changelog-body" class="modal-body"></div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.2.7/jquery.devbridge-autocomplete.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.0.1/spin.min.js"></script>
+
+        <script src="resources/js/minecraft-plugins.min.js"></script>
+
+        <script>
+            MinecraftPlugins.init();
+        </script>
+
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+            ga('create', 'UA-61319334-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+
+    </body>
+
+</html>

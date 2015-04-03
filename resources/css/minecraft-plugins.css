@@ -1,0 +1,122 @@
+/* Use the Google Open Sans font */
+* {
+    font-family: "Open Sans", sans-serif;
+}
+
+/* Change the background color */
+body {
+    padding-top: 70px;
+    background-color: #E0E0E0;
+}
+
+/* Change the color of the navbar and add a shadow */
+.navbar {
+    background-color: #333333;
+    box-shadow: 0 2px 1px 1px gray;
+}
+
+/* Hide the plugin details by default to allow fade in */
+.plugin-details {
+    display: none;
+}
+
+/* Reduce the padding around the edges */
+.jumbotron {
+    background-color: #F2F2F2;
+    padding: 20px;
+}
+
+/* Center the text in the welcome section */
+.jumbotron > h2, h4 {
+    text-align: center;
+}
+
+/* Give extra padding between icons and the words that follow */
+.fa {
+    padding-right: 5px;
+}
+
+/*  */
+.panel-title {
+    font-weight: bold;
+}
+
+/* Ensure the text areas don't resize */
+.panel-body {
+    min-height: 40px;
+    padding: 10px 15px;
+}
+
+/* Vertically align the text, size the button properly, and bold the font */
+.btn-plugin-info {
+    padding-top: 20px;
+    min-height: 60px;
+    font-weight: bold;
+}
+
+#plugin-logo {
+    text-align: center;
+    position: relative;
+    display: block;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.plugin-logo-container {
+    height: 263px;
+}
+
+.table {
+    margin-top: 30px;
+    background-color: white;
+}
+
+table th {
+    background-color: #F5F5F5;
+    text-align: center;
+}
+
+.alert {
+    text-align: center;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: #f5f5f5;
+}
+
+.autocomplete-suggestions {
+    border: 1px solid #999;
+    background: #FFF;
+    overflow: auto;
+}
+
+.autocomplete-suggestion {
+    padding: 2px 5px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.autocomplete-selected {
+    background: #F0F0F0;
+}
+
+.autocomplete-suggestions strong {
+    font-weight: normal;
+    color: #3399FF;
+}
+
+.autocomplete-group {
+    padding: 2px 5px;
+}
+
+.autocomplete-group strong {
+    display: block;
+    border-bottom: 1px solid #000;
+}
