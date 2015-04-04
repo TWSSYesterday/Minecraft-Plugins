@@ -10,9 +10,7 @@ var DBO = {
     settings: {},
 
     // Initialize the source.
-    init: function () {
-        console.log("dbo_init");
-    },
+    init: function () {},
 
     search: function (search, type) {
         this.getPluginSlug(search, type, this.getPluginData);
@@ -42,10 +40,10 @@ var DBO = {
                         }
                     }
 
-                    if (!data[0]) {
-                        Core.error("Plugin does not exist.");
-                    } else {
+                    if (data[0]) {
                         callback(slug, type, Core.populateData);
+                    } else {
+                        Core.error("Plugin does not exist.");
                     }
 
                 }
