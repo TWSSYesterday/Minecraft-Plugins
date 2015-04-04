@@ -1,5 +1,3 @@
-// TODO: Stop the spinner before the success/error callback?
-
 var Core = {
 
     // The source of the data (defaults to DBO).
@@ -11,6 +9,7 @@ var Core = {
     // The loading spinner.
     spinner: null,
 
+    // URL for our website.
     websiteUrl: "//www.minecraft-plugins.com/",
 
     // Settings for the core.
@@ -25,11 +24,13 @@ var Core = {
         // Create the spinner.
         this.spinner = new Spinner();
 
-        // Bind events and such here.
+        // Link directly to a plugin, run the search and set the proper values in the search area.
         window.onload = function () {
             var params = Core.parseQueryString();
             if (params.search && params.type) {
                 Core.search(params.search, params.type);
+                $("#input-search-term").val(params.search);
+                $("#input-server-type").val(params.type);
             }
         };
 
@@ -118,6 +119,7 @@ var Core = {
         // Clear the website.
         $("#plugin-website").attr("href", "#");
 
+        // Clear the repo page.
         $("#plugin-repo-page").attr("href", "#");
 
         // Clear the latest download link.
@@ -165,9 +167,6 @@ var Core = {
 
         // Stop the spinner.
         this.spinner.stop();
-
-        // Need this?
-        // $('.plugin-details').fadeOut('fast');
 
         // Need this?
         $('.alert').slice(0).remove();
