@@ -138,7 +138,7 @@ var Core = {
         return $("#input-server-type :selected").val();
     },
 
-    start: function() {
+    start: function () {
 
         // Start the spinner.
         Core.spinner.spin(document.getElementById("spinner"));

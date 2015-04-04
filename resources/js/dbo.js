@@ -13,7 +13,7 @@ var DBO = {
     init: function () {
         console.log("dbo_init");
     },
-    
+
     search: function (search, type) {
         this.getPluginSlug(search, type, this.getPluginData);
     },
