@@ -58,6 +58,10 @@ var DBO = {
 
         };
 
+        xhr.onerror = function () {
+            Core.error("Error searching for plugin.");
+        };
+
         xhr.open("GET", url, true);
         xhr.send();
 
@@ -83,6 +87,10 @@ var DBO = {
 
             }
 
+        };
+
+        xhr.onerror = function () {
+            Core.error("Error searching for plugin.");
         };
 
         xhr.open("GET", url, true);
