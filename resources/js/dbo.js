@@ -112,7 +112,7 @@ var DBO = {
             }
         };
 
-        xhr.open("GET", "bukkit-plugins.json", true);
+        xhr.open("GET", Core.websiteUrl + "bukkit-plugins.json", true);
         xhr.send();
 
     }
