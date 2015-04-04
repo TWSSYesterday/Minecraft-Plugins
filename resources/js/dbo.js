@@ -105,7 +105,8 @@ var DBO = {
                 var data = JSON.parse(xhr.responseText);
                 $("#input-search-term").autocomplete({
                     lookup: data.suggestions,
-                    lookupLimit: 20
+                    lookupLimit: 20,
+                    appendTo: $("#search-suggestions")
                 });
             }
         };

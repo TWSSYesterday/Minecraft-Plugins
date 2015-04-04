@@ -78,6 +78,10 @@ table th {
     text-align: center;
 }
 
+#search-suggestions {
+    position: absolute;
+}
+
 .alert {
     text-align: center;
 }
