@@ -42,7 +42,7 @@ var DBO = {
                         }
                     }
 
-                    if (typeof data[0] === "undefined") {
+                    if (!data[0]) {
                         Core.error("Plugin does not exist.");
                     } else {
                         callback(slug, type, Core.populateData);
