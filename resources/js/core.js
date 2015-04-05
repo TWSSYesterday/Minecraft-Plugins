@@ -10,7 +10,7 @@ var Core = {
     spinner: null,
 
     // URL for our website.
-    websiteUrl: "//www.minecraft-plugins.com/",
+    websiteUrl: '//www.minecraft-plugins.com/',
 
     // Settings for the core.
     settings: {},
@@ -29,22 +29,22 @@ var Core = {
             var params = Core.parseQueryString();
             if (params.search && params.type) {
                 Core.search(params.search, params.type);
-                $("#input-search-term").val(params.search);
-                $("#input-server-type").val(params.type);
+                $('#input-search-term').val(params.search);
+                $('#input-server-type').val(params.type);
             }
         };
 
         // Don't allow empty searches.
-        $("#search-form").submit(function () {
-            var search = $("#input-search-term").val(), type = $("#input-server-type :selected").attr("value");
+        $('#search-form').submit(function () {
+            var search = $('#input-search-term').val(), type = $('#input-server-type :selected').attr('value');
             if (!search || !type) {
-                Core.error("Must not have empty parameters.");
+                Core.error('Must not have empty parameters.');
                 return false;
             }
         });
 
         // When the platform type is changed, update the source.
-        $("#input-server-type").change(function () {
+        $('#input-server-type').change(function () {
             this.setSource();
         });
 
@@ -59,7 +59,7 @@ var Core = {
             pl = /\+/g,
             search = /([^&=]+)=?([^&]*)/g,
             decode = function (s) {
-                return decodeURIComponent(s.replace(pl, " "));
+                return decodeURIComponent(s.replace(pl, ' '));
             },
             query = window.location.search.substring(1);
 
@@ -105,43 +105,43 @@ var Core = {
     clearData: function () {
 
         // Clear the name.
-        $("#plugin-name").empty();
+        $('#plugin-name').empty();
 
         // Clear the authors.
-        $("#plugin-author").empty();
+        $('#plugin-author').empty();
 
         // Clear the version.
-        $("#plugin-latest-version").empty();
+        $('#plugin-latest-version').empty();
 
         // Clear the description.
-        $("#plugin-description").empty();
+        $('#plugin-description').empty();
 
         // Clear the website.
-        $("#plugin-website").attr("href", "#");
+        $('#plugin-website').attr('href', '#');
 
         // Clear the repo page.
-        $("#plugin-repo-page").attr("href", "#");
+        $('#plugin-repo-page').attr('href', '#');
 
         // Clear the latest download link.
-        $("#plugin-latest-download").attr("href", "#");
+        $('#plugin-latest-download').attr('href', '#');
 
         // Empty the downloads table.
-        $("#download-table > tbody").empty();
+        $('#download-table > tbody').empty();
 
     },
 
     getSearchTerm: function () {
-        return $("#input-search-term").val();
+        return $('#input-search-term').val();
     },
 
     getServerType: function () {
-        return $("#input-server-type :selected").val();
+        return $('#input-server-type :selected').val();
     },
 
     start: function () {
 
         // Start the spinner.
-        Core.spinner.spin(document.getElementById("spinner"));
+        Core.spinner.spin(document.getElementById('spinner'));
 
     },
 
@@ -176,7 +176,7 @@ var Core = {
             class: 'alert alert-danger',
             role: 'alert',
             html: msg + '<a href="#" class="close" data-dismiss="alert">&times;</a>'
-        }).appendTo("#error");
+        }).appendTo('#error');
 
     },
 
@@ -184,52 +184,52 @@ var Core = {
 
         Core.source.data = data;
 
-        $("#plugin-name").html(data.plugin_name || "");
-        $("#plugin-author").html(data.authors || "");
-        $("#plugin-latest-version").html(data.versions[0].version || "");
-        $("#plugin-description").html(data.description || "");
-        $("#plugin-website").attr("href", data.website || "");
-        $("#plugin-repo-page").attr("href", data.dbo_page || "");
-        $("#plugin-latest-download").attr("href", data.versions[0].download || "");
-        $("#plugin-logo").attr("href", data.logo_full || "resources/images/default.png");
-        $("#plugin-logo img").attr("src", data.logo_full || "resources/images/default.png");
+        $('#plugin-name').html(data.plugin_name || '');
+        $('#plugin-author').html(data.authors || '');
+        $('#plugin-latest-version').html(data.versions[0].version || '');
+        $('#plugin-description').html(data.description || '');
+        $('#plugin-website').attr('href', data.website || '');
+        $('#plugin-repo-page').attr('href', data.dbo_page || '');
+        $('#plugin-latest-download').attr('href', data.versions[0].download || '');
+        $('#plugin-logo').attr('href', data.logo_full || 'resources/images/default.png');
+        $('#plugin-logo img').attr('src', data.logo_full || 'resources/images/default.png');
 
         for (var i = 0; i < data.versions.length; i++) {
 
             // Create the changlog button.
-            var changelog_button = $("<a>", {
-                class: "btn btn-primary btn-sm btn-block btn-changelog",
-                text: "Changelog"
+            var changelog_button = $('<a>', {
+                class: 'btn btn-primary btn-sm btn-block btn-changelog',
+                text: 'Changelog'
             });
 
             // Create the download button
-            var download_button = $("<a>", {
+            var download_button = $('<a>', {
                 href: data.versions[i].download,
-                class: "btn btn-primary btn-sm btn-block",
-                html: "<i class='icon fa fa-download'></i>Download"
+                class: 'btn btn-primary btn-sm btn-block',
+                html: '<i class="icon fa fa-download"></i>Download'
             });
 
             // Create the table entry for the version.
-            $("#download-table").find("tbody")
-                .append($("<tr id='trr-" + i + "'>")
-                    .append($("<td>")
+            $('#download-table').find('tbody')
+                .append($('<tr id="trr-' + i + '">')
+                    .append($('<td>')
                         .text(data.versions[i].version))
-                    .append($("<td>")
+                    .append($('<td>')
                         .text(data.versions[i].filename))
-                    .append($("<td>")
+                    .append($('<td>')
                         .append(changelog_button))
-                    .append($("<td>")
+                    .append($('<td>')
                         .append(download_button))
             );
 
         }
 
         // Show the modal when the changelog is clicked.
-        $(".btn-changelog").click(function () {
+        $('.btn-changelog').click(function () {
             var index = $(this).closest('td').parent()[0].sectionRowIndex;
-            $("#changelog-title").text(Core.source.data.versions[index].version);
-            $("#changelog-body").html(atob(Core.source.data.versions[index].changelog));
-            $("#changelog-modal").modal("show");
+            $('#changelog-title').text(Core.source.data.versions[index].version);
+            $('#changelog-body').html(atob(Core.source.data.versions[index].changelog));
+            $('#changelog-modal').modal('show');
         });
 
         // Everything was a success.

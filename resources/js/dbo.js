@@ -4,7 +4,7 @@ var DBO = {
     data: null,
 
     // Base URL for the BukGet API.
-    baseUrl: "//api.bukget.org/3/",
+    baseUrl: '//api.bukget.org/3/',
 
     // Settings for DBO.
     settings: {},
@@ -18,7 +18,7 @@ var DBO = {
 
     getPluginSlug: function (name, type, callback) {
 
-        var url = DBO.baseUrl + "search/plugin_name/like/" + name + "?fields=slug,plugin_name";
+        var url = DBO.baseUrl + 'search/plugin_name/like/' + name + '?fields=slug,plugin_name';
 
         var xhr = new XMLHttpRequest();
 
@@ -43,31 +43,31 @@ var DBO = {
                     if (data[0]) {
                         callback(slug, type, Core.populateData);
                     } else {
-                        Core.error("Plugin does not exist.");
+                        Core.error('Plugin does not exist.');
                     }
 
                 }
 
                 // Invalid plugin.
                 if (xhr.status === 404)
-                    Core.error("Plugin does not exist.");
+                    Core.error('Plugin does not exist.');
 
             }
 
         };
 
         xhr.onerror = function () {
-            Core.error("Error searching for plugin.");
+            Core.error('Error searching for plugin.');
         };
 
-        xhr.open("GET", url, true);
+        xhr.open('GET', url, true);
         xhr.send();
 
     },
 
     getPluginData: function (slug, type, callback) {
 
-        var url = DBO.baseUrl + "plugins/" + type + "/" + slug;
+        var url = DBO.baseUrl + 'plugins/' + type + '/' + slug;
 
         var xhr = new XMLHttpRequest();
 
@@ -81,17 +81,17 @@ var DBO = {
 
                 // Invalid plugin.
                 if (xhr.status === 404)
-                    Core.error("Could not load plugin data.");
+                    Core.error('Could not load plugin data.');
 
             }
 
         };
 
         xhr.onerror = function () {
-            Core.error("Error searching for plugin.");
+            Core.error('Error searching for plugin.');
         };
 
-        xhr.open("GET", url, true);
+        xhr.open('GET', url, true);
         xhr.send();
 
     },
@@ -103,15 +103,15 @@ var DBO = {
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 var data = JSON.parse(xhr.responseText);
-                $("#input-search-term").autocomplete({
+                $('#input-search-term').autocomplete({
                     lookup: data.suggestions,
                     lookupLimit: 20,
-                    appendTo: $("#search-suggestions")
+                    appendTo: $('#search-suggestions')
                 });
             }
         };
 
-        xhr.open("GET", Core.websiteUrl + "bukkit-plugins.json", true);
+        xhr.open('GET', Core.websiteUrl + 'bukkit-plugins.json', true);
         xhr.send();
 
     }
