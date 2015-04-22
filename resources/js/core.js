@@ -37,10 +37,16 @@ var Core = {
         // Don't allow empty searches.
         $('#search-form').submit(function () {
             var search = $('#input-search-term').val(), type = $('#input-server-type :selected').attr('value');
-            if (!search || !type) {
+            if (search && type) {
+                $('#input-search-term').val(search.trim());
+            } else {
                 Core.error('Must not have empty parameters.');
                 return false;
             }
+            //if (!search || !type) {
+            //    Core.error('Must not have empty parameters.');
+            //    return false;
+            //}
         });
 
         // When the platform type is changed, update the source.
