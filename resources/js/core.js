@@ -43,10 +43,6 @@ var Core = {
                 Core.error('Must not have empty parameters.');
                 return false;
             }
-            //if (!search || !type) {
-            //    Core.error('Must not have empty parameters.');
-            //    return false;
-            //}
         });
 
         // When the platform type is changed, update the source.
