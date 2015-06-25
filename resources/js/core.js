@@ -194,7 +194,7 @@ var Core = {
         $('#plugin-repo-page').attr('href', data.dbo_page || '');
         $('#plugin-latest-download').attr('href', data.versions[0].download || '');
         $('#plugin-logo').attr('href', data.logo_full || 'resources/images/default.png');
-        $('#plugin-logo img').attr('src', data.logo_full || 'resources/images/default.png');
+        $('#plugin-logo').find("img").attr('src', data.logo_full || 'resources/images/default.png');
 
         for (var i = 0; i < data.versions.length; i++) {
 
